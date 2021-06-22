@@ -5,9 +5,9 @@ import middleware from "../../middleware/index";
 
 const Todo = (props) => {
   let { todos } = props;
-  const deleteTask = async (key) => {
-    middleware.deleteTodo(key);
-    props.setTodos(todos.filter((t) => t.createdAt !== key));
+  const deleteTask = async (createdAt) => {
+    middleware.deleteTodo(createdAt);
+    props.setTodos(todos.filter((t) => t.createdAt !== createdAt));
   };
 
   return (
@@ -18,7 +18,7 @@ const Todo = (props) => {
             <Task
               taskDescription={data.todo}
               deleteTask={deleteTask}
-              key={data.createdAt}
+              createdAt={data.createdAt}
             />
           );
         })

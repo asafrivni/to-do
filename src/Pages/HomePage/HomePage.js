@@ -1,17 +1,24 @@
 import Todo from "../../Components/Todo/Todo";
 import TodoInput from "../../Components/TodoInput/TodoInput";
 import "./HomePage.css";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import middleware from "../../middleware";
 
 const HomePage = () => {
   const [todos, setTodos] = useState([]);
-  useEffect(async () => {
-    const data = await middleware.getAllTodos();
-    setTodos(data);
-  });
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const todos = await middleware.getAllTodos();
+      console.log(todos)
+      setTodos(todos);
+    };
+    fetchTodos();
+  }, []);
   const addTask = (newTaskDescription) => {
-    if (newTaskDescription) setTodos([...todos, newTaskDescription]);
+    if (newTaskDescription) {
+      middleware.addTodo(newTaskDescription)
+      setTodos([...todos, {todo:newTaskDescription,createdAt: (new Date).getTime()}]);
+    }
   };
 
   return (

@@ -11,7 +11,7 @@ const Task = (props) => {
           aria-label="delete"
           size="small"
           onClick={() => {
-            props.deleteTask(props.taskDescription);
+            props.deleteTask(props.createdAt);
           }}
         >
           <DeleteIcon />
