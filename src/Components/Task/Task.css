@@ -1,0 +1,12 @@
+.task-card {
+  padding: 0 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-content {
+  font-size: small;
+  margin: 1em 0;
+}
